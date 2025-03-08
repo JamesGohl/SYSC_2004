@@ -19,8 +19,8 @@ public class Item
      * Constructor for the item needing a description and weight
      *
      * @param description The item's description
-     * @param name The item's name
-     * @param weight The item's weight
+     * @param name        The item's name
+     * @param weight      The item's weight
      */
     public Item(String description, String name, double weight)
     {
@@ -38,7 +38,7 @@ public class Item
      */
     public String getDescription()
     {
-        return ("Item: " + description + "Name:" + name + ". Weight(kg): " + weight);
+        return ("Item: " + description + " Name: " + name + " Weight(kg): " + weight);
     }
 
     /**

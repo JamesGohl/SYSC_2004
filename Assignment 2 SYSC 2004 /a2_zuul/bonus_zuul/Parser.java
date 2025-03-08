@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
  * @author Michael Kolling and David J. Barnes
  * @author Lynn Marshall
  * @author James Gohl, 101299043
- * @version February 12, 2025
+ * @version March 8, 2025
  */
 public class Parser
 {

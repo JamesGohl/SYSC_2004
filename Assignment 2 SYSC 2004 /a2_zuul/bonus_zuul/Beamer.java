@@ -11,7 +11,7 @@ import javax.swing.*;
  */
 public class Beamer extends Item
 {
-    private Boolean charged;
+    private boolean charged;
     private Room room;
     private GUI gui;
 
@@ -43,7 +43,7 @@ public class Beamer extends Item
      *
      * @return true if Beamer is charged
      */
-    public Boolean getCharged()
+    public boolean getCharged()
     {
         return charged;
     }

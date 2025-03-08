@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * This is a class that implemetns the GUI for the ZUUl Game
+ * This is a class that implements the GUI for the ZUUl Game
  *
  * @author James Gohl
- * @version March 4, 2025
+ * @version March 8, 2025
  */
 public class GUI
 {

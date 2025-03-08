@@ -37,7 +37,7 @@ public class Item
      */
     public String getDescription()
     {
-        return ("Item: " + description + "Name:" + name + ". Weight(kg): " + weight);
+        return ("Item: " + description + " Name: " + name + " Weight(kg): " + weight);
     }
 
     /**

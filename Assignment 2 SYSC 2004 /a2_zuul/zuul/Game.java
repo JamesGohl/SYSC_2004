@@ -1,6 +1,4 @@
-import java.net.StandardSocketOptions;
 import java.util.Stack;
-import java.util.ArrayList;
 
 /**
  * This class is the main class of the "World of Zuul" application.
@@ -26,7 +24,7 @@ public class Game
     private Room currentRoom;
     private Room previousRoom;
     private Stack<Room> roomStack;
-    private Boolean holding;
+    private boolean holding;
     private Item heldItem;
     private int health;
 
@@ -303,7 +301,7 @@ public class Game
     /**
      * "eat" was entered. Check the rest of the command to see
      * whether it only has one word. Outputs that you have eaten
-     * if holding food
+     * if holding food.
      *
      * @param command The command to be processed
      */
@@ -346,12 +344,13 @@ public class Game
         } else
         {
             Room temp;
-            temp = currentRoom;
-            currentRoom = previousRoom;
+            temp = previousRoom;
             roomStack.push(currentRoom);
-            previousRoom = temp;
+            previousRoom = currentRoom;
+            currentRoom = temp;
             System.out.println("You have gone back");
             System.out.println(currentRoom.getLongDescription());
+            System.out.println(whatHolding());
         }
     }
 
@@ -376,6 +375,7 @@ public class Game
             currentRoom = roomStack.pop();
             System.out.println("You have gone stackBack");
             System.out.println(currentRoom.getLongDescription());
+            System.out.println(whatHolding());
 
         }
     }

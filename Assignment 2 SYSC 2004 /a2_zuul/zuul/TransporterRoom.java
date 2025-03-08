@@ -6,11 +6,11 @@ import java.util.Random;
  * to another room
  *
  * @author James Gohl 101299043
- * @version March 4, 2025
+ * @version March 8, 2025
  */
 public class TransporterRoom extends Room
 {
-    Random rand;
+    private Random rand;
 
     /**
      * transporter room constructor

@@ -18,7 +18,7 @@ import javax.swing.*;
  * @author Michael Kolling and David J. Barnes
  * @author Lynn Marshall
  * @author James Gohl, 1012990543
- * @version February 12, 2025
+ * @version March 8, 2025
  */
 
 public class Game
@@ -27,7 +27,7 @@ public class Game
     private Room currentRoom;
     private Room previousRoom;
     private Stack<Room> roomStack;
-    private Boolean holding;
+    private boolean holding;
     private Item heldItem;
     private int health;
     private JTextArea textArea;
@@ -226,9 +226,12 @@ public class Game
     private void printHelp()
     {
         System.out.println("You are lost. You are alone. You wander");
+        textArea.setText("You are lost. You are alone. You wander\n");
         System.out.println("around at the university.");
+        textArea.append("around at the university.\n");
         System.out.println();
         System.out.println("Your command words are:");
+        textArea.append("Your command words are:\n");
         String[] commands = parser.getCommands();
         for (String command : commands)
         {
@@ -375,14 +378,16 @@ public class Game
         } else
         {
             Room temp;
-            temp = currentRoom;
-            currentRoom = previousRoom;
+            temp = previousRoom;
             roomStack.push(currentRoom);
-            previousRoom = temp;
+            previousRoom = currentRoom;
+            currentRoom = temp;
             System.out.println("You have gone back");
             textArea.setText("You have gone back\n");
             System.out.println(currentRoom.getLongDescription());
+            System.out.println(whatHolding());
             textArea.append(currentRoom.getLongDescription());
+            textArea.append(whatHolding());
             gui.updateImage(currentRoom.getImagePath());
         }
     }
@@ -411,7 +416,9 @@ public class Game
             System.out.println("You have gone stackBack");
             textArea.setText("You have gone stackBack");
             System.out.println(currentRoom.getLongDescription());
+            System.out.println(whatHolding());
             textArea.append(currentRoom.getLongDescription());
+            textArea.append(whatHolding());
             gui.updateImage(currentRoom.getImagePath());
 
         }
