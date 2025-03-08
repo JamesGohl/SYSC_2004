@@ -9,11 +9,27 @@ import java.util.ArrayList;
  */
 public class TrainTest extends junit.framework.TestCase
 {
+    Train aTrain;
+    Car car1, car2, car3, car4;
+
     /**
      * Default constructor for test class TrainTest
      */
     public TrainTest()
     {
+        aTrain = new Train();
+
+        car1 = new Car(1250, true);
+        aTrain.addCar(car1);
+
+        car2 = new Car(1300, false);
+        aTrain.addCar(car2);
+
+        car3 = new Car(1740, false);
+        aTrain.addCar(car3);
+
+        car4 = new Car(1253, true);
+        aTrain.addCar(car4);
     }
 
     /**
@@ -34,29 +50,22 @@ public class TrainTest extends junit.framework.TestCase
     {
     }
 
+    /**
+     * Test empty train
+     */
     public void testCreateEmptyTrain()
     {
-        Train aTrain = new Train();
+        Train emptyTrain = new Train();
 
         /* Verify that a new train has no cars. */
-        assertEquals(0, aTrain.cars().size());
+        assertEquals(0, emptyTrain.cars().size());
     }
 
+    /**
+     * test add car method
+     */
     public void testAddCar()
     {
-        Train aTrain = new Train();
-
-        Car car1 = new Car(1250, true);
-        aTrain.addCar(car1);
-
-        Car car2 = new Car(1300, false);
-        aTrain.addCar(car2);
-
-        Car car3 = new Car(1740, false);
-        aTrain.addCar(car3);
-
-        Car car4 = new Car(1740, true);
-        aTrain.addCar(car4);
 
         ArrayList<Car> cars = aTrain.cars();
         assertEquals(4, cars.size());
@@ -82,21 +91,11 @@ public class TrainTest extends junit.framework.TestCase
         assertSame(car4, cars.get(3));
     }
 
+    /**
+     * test issue ticket method
+     */
     public void testIssueTicket()
     {
-        Train aTrain = new Train();
-
-        Car car1 = new Car(1250, true);
-        aTrain.addCar(car1);
-
-        Car car2 = new Car(1300, false);
-        aTrain.addCar(car2);
-
-        Car car3 = new Car(1740, false);
-        aTrain.addCar(car3);
-
-        Car car4 = new Car(1741, true);
-        aTrain.addCar(car4);
 
         /* Book all the seats in the 2 business-class car. */
         for (int i = 0; i < Car.BUSINESS_SEATS * 2; i++)
@@ -162,7 +161,7 @@ public class TrainTest extends junit.framework.TestCase
         /* Book all the seats in the second economy-class car. */
         for (int i = 0; i < Car.ECONOMY_SEATS; i++)
         {
-            assertTrue( aTrain.issueTicket(false));
+            assertTrue(aTrain.issueTicket(false));
         }
 
         /* check that all seats are now booked */
@@ -187,21 +186,11 @@ public class TrainTest extends junit.framework.TestCase
         assertFalse(aTrain.issueTicket(false));
     }
 
+    /**
+     * test cancel ticket method
+     */
     public void testCancelTicket()
     {
-        Train aTrain = new Train();
-
-        Car car1 = new Car(1250, true);
-        aTrain.addCar(car1);
-
-        Car car2 = new Car(1300, false);
-        aTrain.addCar(car2);
-
-        Car car3 = new Car(1740, false);
-        aTrain.addCar(car3);
-
-        Car car4 = new Car(1253, true);
-        aTrain.addCar(car4);
 
         /* Book all the seats in the business-class car. */
         for (int i = 0; i < Car.BUSINESS_SEATS * 1.5; i++)
@@ -217,7 +206,7 @@ public class TrainTest extends junit.framework.TestCase
 
         ArrayList<Car> cars = aTrain.cars();
 
-        assertTrue( aTrain.cancelTicket(1300, 4));
+        assertTrue(aTrain.cancelTicket(1300, 4));
         assertFalse(cars.get(1).seats()[3].isBooked());
 
         assertTrue(aTrain.cancelTicket(1253, 7));
@@ -243,5 +232,59 @@ public class TrainTest extends junit.framework.TestCase
         /* attempt to cancel un booked seat*/
         assertFalse(aTrain.cancelTicket(1741, 25));
         assertFalse(cars.get(3).seats()[24].isBooked());
+    }
+
+    /**
+     * Test if you can book a seat after it has been canceled
+     */
+    public void testBookCancelTicket()
+    {
+
+
+        /* Book all the seats in the business-class car. */
+        for (int i = 0; i < Car.BUSINESS_SEATS * 1.5; i++)
+        {
+            assertTrue(aTrain.issueTicket(true));
+        }
+
+        /* Book all the seats in the first economy-class car. */
+        for (int i = 0; i < Car.ECONOMY_SEATS; i++)
+        {
+            assertTrue(aTrain.issueTicket(false));
+        }
+
+        //test canceled economy and rebook
+        assertTrue(aTrain.cancelTicket(1300, 4));
+        assertTrue(aTrain.cancelTicket(1300, 14));
+        assertTrue(aTrain.cancelTicket(1300, 27));
+
+        assertTrue(aTrain.issueTicket(false));
+        assertTrue(car2.seats()[3].isBooked());
+
+        assertTrue(aTrain.issueTicket(false));
+        assertTrue(car2.seats()[13].isBooked());
+
+        assertTrue(aTrain.issueTicket(false));
+        assertTrue(car2.seats()[26].isBooked());
+
+        assertTrue(aTrain.issueTicket(false));
+        assertTrue(car3.seats()[0].isBooked());
+
+        //test cancel business and rebook
+        assertTrue(aTrain.cancelTicket(1250, 4));
+        assertTrue(aTrain.cancelTicket(1253, 3));
+        assertTrue(aTrain.cancelTicket(1253, 7));
+
+        assertTrue(aTrain.issueTicket(true));
+        assertTrue(car1.seats()[3].isBooked());
+
+        assertTrue(aTrain.issueTicket(true));
+        assertTrue(car2.seats()[13].isBooked());
+
+        assertTrue(aTrain.issueTicket(true));
+        assertTrue(car2.seats()[6].isBooked());
+
+        assertTrue(aTrain.issueTicket(true));
+        assertTrue(car2.seats()[15].isBooked());
     }
 }
