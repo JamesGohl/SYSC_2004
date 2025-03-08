@@ -1,4 +1,5 @@
 import java.util.Random;
+
 /**
  * this is a subclass of rooms for the transporter room
  * When the go command is used it randomly transports you
@@ -10,6 +11,7 @@ import java.util.Random;
 public class TransporterRoom extends Room
 {
     Random rand;
+
     /**
      * transporter room constructor
      */
@@ -18,6 +20,7 @@ public class TransporterRoom extends Room
         super("in a transporter room where leaving takes you somewhere random");
         rand = new Random();
     }
+
     /**
      * Returns a random room, independent of the direction parameter
      *
