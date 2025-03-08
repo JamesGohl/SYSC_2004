@@ -1,0 +1,82 @@
+@startuml
+class Item {
+- String description
+- double weight
+- String name
++ String getDescription()
++ String getName()
+}
+
+
+class Main {
++ {static} void main(String[])
+}
+
+class CommandWords {
+- {static} String[] validCommands
++ boolean isCommand(String)
++ String[] getCommandList()
+}
+
+
+class Game {
+- Parser parser
+- Room currentRoom
+- Room previousRoom
+- Stack<Room> roomStack
+- Boolean holding
+- Item heldItem
+- int health
+- void createRooms()
++ void play()
+- void printWelcome()
+- boolean processCommand(Command)
+- void printHelp()
+- void goRoom(Command)
+- boolean quit(Command)
+- void look(Command)
+- void eat(Command)
+- void back(Command)
+- void stackBack(Command)
+- void take(Command)
+- void drop(Command)
+- void whatHolding()
+- void decreaseHealth()
+}
+
+
+class Room {
+- String description
+- HashMap<String,Room> exits
+- ArrayList<Item> itemArr
++ void setExit(String,Room)
++ String getShortDescription()
++ String getLongDescription()
+- String getExitString()
++ Room getExit(String)
++ void addItem(Item)
++ void removeItem(Item)
+- String getItems()
++ ArrayList<Item> getItemArr()
+}
+
+
+class Command {
+- String commandWord
+- String secondWord
++ String getCommandWord()
++ String getSecondWord()
++ boolean isUnknown()
++ boolean hasSecondWord()
+}
+
+
+class Parser {
+- CommandWords commands
+- Scanner reader
++ Command getCommand()
++ String[] getCommands()
+}
+
+
+@enduml
