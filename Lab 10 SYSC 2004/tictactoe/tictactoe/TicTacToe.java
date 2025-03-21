@@ -67,7 +67,6 @@ public class TicTacToe
         // loop until the game ends
         while (winner == EMPTY)
         { // game still in progress
-            System.out.println("TEST " + winner);
             // get input (row and column)
             while (true)
             { // repeat until valid input
@@ -173,7 +172,7 @@ public class TicTacToe
         }
         else if(!winner.equals(EMPTY))
         {
-            boardStr = boardStr.concat("\nThe winner is" + winner );
+            boardStr = boardStr.concat("\nThe winner is " + winner );
         }
         return boardStr;
     }

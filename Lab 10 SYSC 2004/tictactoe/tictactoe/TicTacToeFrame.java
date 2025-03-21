@@ -8,7 +8,8 @@ import javax.swing.*;
  * simple GUI window.
  * 
  * @author Lynn Marshall
- * @version November 8, 2012
+ * @author James Gohl
+ * @version March 21, 2025
  */
 
 public class TicTacToeFrame extends TicTacToe 
@@ -28,7 +29,7 @@ public class TicTacToeFrame extends TicTacToe
        status = new JTextArea(10, 30);
        scroll = new JScrollPane(status);
 
-       frame.add(scroll, BorderLayout.CENTER);
+       frame.getContentPane().add(scroll, BorderLayout.CENTER);
        frame.setVisible(true);
    }
    
