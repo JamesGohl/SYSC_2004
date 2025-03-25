@@ -1,3 +1,16 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+
+# Ignore everything
+/*
+
+# Don't ignore .java and .txt files
+!*.java
+!*.txt
+
+# Don't ignore directories (to allow .java files to be tracked inside them)
+!*/
+
+# Optionally, you can allow .gitignore itself to be tracked:
+!.gitignore
