@@ -47,6 +47,44 @@ public class Player
         location = board.nextSquare(location, rollTotal); 
         System.out.println(name + " landed on " + location.description()); 
     }
+
+    /**
+     * getter for the name of the player
+     * @return the name of the player
+     */
+    public String name()
+    {
+        return name;
+    }
+
+    /**
+     * getter for the board of the player
+     * @return the board of the player
+     */
+    public Board board()
+    {
+        return board;
+    }
+
+    /**
+     * getter for the dice of the player
+     * @return the dice of the player
+     */
+    public Dice dice()
+    {
+        return dice;
+    }
+
+    /**
+     * getter for the location of the player
+     * @return the location of the player
+     */
+    public Square location()
+    {
+        return location;
+    }
+
+
 }
 
     
