@@ -62,6 +62,8 @@ public class BoardTest
     @Test
     public void testStart1()
     {
+        System.out.println("Testing start 1");
+
         assertEquals(1, board.startingSquare().number());
     }
 
@@ -71,6 +73,8 @@ public class BoardTest
     @Test
     public void testOne40()
     {
+        System.out.println("Testing 1-40");
+
         Square square = board.startingSquare();
         for (int i = 1; i <= 40; i++)
         {
@@ -87,6 +91,8 @@ public class BoardTest
     @Test
     public void testNextSquare()
     {
+        System.out.println("Testing next square");
+
         Square square = board.startingSquare();
         int squareNum = 1;
         for (int i = 1; i <= 12; i++)
@@ -110,6 +116,8 @@ public class BoardTest
     @Test
     public void testWrap()
     {
+        System.out.println("Testing wrap around");
+
         Square start = board.startingSquare();
         assertEquals(6, board.nextSquare(start, 45).number());
         Square square = new Square(Square.LOT, "test", 40);
