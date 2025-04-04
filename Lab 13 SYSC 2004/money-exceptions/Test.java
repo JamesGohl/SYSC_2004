@@ -3,6 +3,7 @@
  * A class to test adding exceptions and errors to the Money class.
  * 
  * @author Lynn  Marshall
+ * @author James Gohl
  * @version Solution
  */
 public class Test
